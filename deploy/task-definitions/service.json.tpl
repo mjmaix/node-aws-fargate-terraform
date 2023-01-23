@@ -33,6 +33,10 @@
         "value": "${mongo_username}"
       },
       {
+        "name": "MONGO_PASSWORD",
+        "value": "${mongo_password}"
+      },
+      {
         "name": "MONGO_HOST",
         "value": "${mongo_host}"
       },
@@ -41,10 +45,6 @@
         "value": "${mongo_database_name}"
       }
     ],
-    "secrets": [{
-      "name": "MONGO_PASSWORD",
-      "valueFrom": "${mongo_password_secret_arn}"
-    }],
     "ulimits": [
       {
         "name": "nofile",
