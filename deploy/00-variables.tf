@@ -1,14 +1,16 @@
-variable "github_token" {}
+variable "codestar_connector_credentials_arn" {}
 
-variable "github_username" {}
-
-variable "github_project_name" {}
+variable "github_full_repo_id" {}
 
 variable "app_name" {}
 
 variable "environment" {}
 
 variable "default_region" {}
+
+variable "default_az1" {}
+
+variable "default_az2" {}
 
 variable "docker_username" {}
 

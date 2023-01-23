@@ -58,6 +58,11 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
       "Effect": "Allow",
       "Action": "ecs:*",
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "codestar-connections:UseConnection",
+      "Resource": "${var.codestar_connector_credentials_arn}"
     }
   ]
 }

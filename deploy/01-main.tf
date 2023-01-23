@@ -1,12 +1,12 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-1"
 }
 
 terraform {
   backend "s3" {
-    bucket = "node-app-tf-state"
-    key    = "terraform.tfstate"
-    region = "us-east-1"
+    bucket = "mja-demo-terraform-states"
+    key    = "nodeawsfgtf/terraform.tfstate"
+    region = "ap-southeast-1"
   }
 }
 

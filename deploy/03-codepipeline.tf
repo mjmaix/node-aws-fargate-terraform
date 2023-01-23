@@ -17,16 +17,15 @@ resource "aws_codepipeline" "node_express_ecs_codepipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["source_output"]
 
       configuration = {
-        Owner      = var.github_username
-        Repo       = var.github_project_name
-        Branch     = "master"
-        OAuthToken = var.github_token
+        BranchName       = "master"
+        ConnectionArn    = var.codestar_connector_credentials_arn
+        FullRepositoryId = var.github_full_repo_id
       }
     }
   }

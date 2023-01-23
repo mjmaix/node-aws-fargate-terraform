@@ -21,27 +21,30 @@ aws configure # configure your AWS CLI profile
 
 ## Configuration
 
-- Create a Github project, and generate a personal access token (see doc [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
-
 - Create an [S3 bucket](https://www.terraform.io/docs/language/settings/backends/s3.html) to store Terraform state. Populate bucket name in `01-main.tf`
 
 - Create a secret on [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) named `DockerHubAccessToken` with key `DOCKER_HUB_ACCESS_TOKEN`, and your [Docker access token](https://docs.docker.com/docker-hub/access-tokens/) as value
 
 - Create a secret on [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) named `MongoPassword` with key `MONGO_PASSWORD`, and your MongoDB password as value
 
+- Setup [CodePipeline CodeStarConnections](https://docs.aws.amazon.com/codepipeline/latest/userguide/update-github-action-connections.html) with read rights for the repo and save the ARN to `terraform.tfvars`
+
 - Populate `terraform.tfvars`:
 
 ```bash
-default_region            = "us-east-1"
-docker_username           = "matlau"
-github_username           = "MatthewCYLau"
-github_project_name       = "node-aws-fargate-terraform"
-app_name                  = "node-aws-fargate-app"
-environment               = "staging"
-mongo_username            = "admin-matlau"
-mongo_host                = "mattewcylau-5ltcp.mongodb.net"
-mongo_database_name       = "node-aws-fargate-app"
-mongo_password_secret_arn = <MongoPassword Secret ARN>
+default_region                     = "ap-southeast-1"
+default_az1                        = "ap-southeast-1a"
+default_az2                        = "ap-southeast-1b"
+docker_username                    = "mjmaixdev"
+github_full_repo_id                = "mjmaix/node-aws-fargate-terraform"
+app_name                           = "mj-node-fg-aws"
+environment                        = "staging"
+mongo_username                     = "admin-mjmaixdev"
+mongo_host                         = "iz3lksp.mongodb.net"
+mongo_database_name                = "demo"
+mongo_password_secret_arn          = <MongoPassword Secret ARN>
+codestar_connector_credentials_arn = <Codestar Connector Credenetials ARN>
+
 ```
 
 ## Deploy
@@ -52,8 +55,6 @@ terraform init # initialises Terraform
 terraform apply # deploys AWS stack. See output for AWS loadbalancer DNS name
 terraform destroy # destroys AWS stack
 ```
-
-When prompted for `github_token`, provide the value and hit Return. Alternatively, create a [local environment variable](https://www.terraform.io/docs/language/values/variables.html#environment-variables) named `TF_VAR_github_token`
 
 ## Usage
 
