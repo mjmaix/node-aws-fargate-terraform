@@ -6,7 +6,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-region": "us-east-1",
+        "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "${aws_cloudwatch_log_group_name}-service",
         "awslogs-group": "${aws_cloudwatch_log_group_name}"
       }
