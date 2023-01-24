@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "staging" {
     protocol            = "HTTP"
     matcher             = "200-299"
     timeout             = "20"
-    path                = "/"
-    unhealthy_threshold = "2"
+    path                = "/ping"
+    unhealthy_threshold = "10"
   }
 }
