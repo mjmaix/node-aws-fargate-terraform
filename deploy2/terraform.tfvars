@@ -35,7 +35,7 @@ task_cpu = 256
 
 container_name = "nodetfaws"
 
-container_image = "nodetfaws"
+container_image = "mja/nodetfaws"
 
 container_memory = 256
 
@@ -128,6 +128,11 @@ environment_variables = [
   {
     name  = "DOCKER_USERNAME"
     value = "mjmaixdev"
+    type  = "PLAINTEXT"
+  },
+  {
+    name  = "ECR_REPO_URL"
+    value = "991300696177.dkr.ecr.ap-southeast-1.amazonaws.com/eg-test-node-aws-ecs-tf3"
     type  = "PLAINTEXT"
   },
 ]
