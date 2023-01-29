@@ -98,7 +98,7 @@ module "ecs_codepipeline" {
     },
     {
       name  = "IMAGE_NAME"
-      value = var.container_name
+      value = var.container_image
       type  = "PLAINTEXT"
     },
   ])
