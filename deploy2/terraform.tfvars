@@ -35,7 +35,7 @@ task_cpu = 256
 
 container_name = "nodetfaws"
 
-container_image = "mja/nodetfaws"
+container_image = "nodetfaws"
 
 container_memory = 256
 
