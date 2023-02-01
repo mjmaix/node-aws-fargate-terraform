@@ -2,7 +2,7 @@ region = "ap-southeast-1"
 
 availability_zones = ["ap-southeast-1a", "ap-southeast-1b"]
 
-namespace = "eg"
+namespace = "mja1"
 
 stage = "test"
 
@@ -10,7 +10,7 @@ name = "ecs-web-app"
 
 vpc_cidr_block = "172.16.0.0/16"
 
-container_image = "cloudposse/default-backend"
+container_image = "mjmaix/default-backend"
 
 container_cpu = 256
 
@@ -114,11 +114,12 @@ codepipeline_enabled = true
 
 codepipeline_s3_bucket_force_destroy = true
 
-codepipeline_github_oauth_token = "test"
+# moved to secrets.tfvars
+# codepipeline_github_oauth_token = "test"
 
 codepipeline_github_webhook_events = ["push"]
 
-codepipeline_repo_owner = "cloudposse"
+codepipeline_repo_owner = "mjmaix"
 
 codepipeline_repo_name = "default-backend"
 
