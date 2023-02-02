@@ -18,10 +18,10 @@ variable "ecs_launch_type" {
   default     = "FARGATE"
 }
 
-var "ecs_assign_public_ip" {
+variable "ecs_assign_public_ip" {
   type        = bool
   description = "Applicable only for FARGATE type"
-  value       = true
+  default     = true
 }
 
 variable "docker_username" {}

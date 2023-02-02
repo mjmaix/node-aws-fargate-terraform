@@ -1,7 +1,7 @@
 # TODO
 
 1. Try EC2 instead of fargate
-2. Auto build changes on terraform on push
+2. No EC2 instances deployed on `ecs_launch_type = EC2`
 
 # new infra
 
