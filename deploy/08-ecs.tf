@@ -1,3 +1,8 @@
+locals {
+  launch_type= "EC2"
+  assign_public_ip = local.launch_type != "EC2"
+}
+
 data "template_file" "node_app" {
   template = file("task-definitions/service.json.tpl")
   vars = {
@@ -33,12 +38,11 @@ resource "aws_ecs_service" "staging" {
   task_definition            = aws_ecs_task_definition.service.arn
   desired_count              = 1
   deployment_maximum_percent = 250
-  launch_type                = "FARGATE"
-
+  launch_type                = local.launch_type
   network_configuration {
     security_groups  = [aws_security_group.ecs_tasks.id]
     subnets          = [aws_subnet.pub_subnet.id, aws_subnet.pub_subnet2.id]
-    assign_public_ip = true
+    assign_public_ip = local.assign_public_ip
   }
 
   load_balancer {
