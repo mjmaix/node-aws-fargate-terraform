@@ -1,6 +1,6 @@
 locals {
-  launch_type= "EC2"
-  assign_public_ip = local.launch_type != "EC2"
+  launch_type      = var.ecs_launch_type
+  assign_public_ip = local.launch_type != "EC2" && var.ecs_assign_public_ip
 }
 
 data "template_file" "node_app" {
