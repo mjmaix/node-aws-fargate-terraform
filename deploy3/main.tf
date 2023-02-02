@@ -18,8 +18,10 @@ module "subnets" {
   vpc_id                   = module.vpc.vpc_id
   igw_id                   = [module.vpc.igw_id]
   ipv4_cidr_block          = [module.vpc.vpc_cidr_block]
-  nat_gateway_enabled      = true
+  nat_gateway_enabled      = false
   nat_instance_enabled     = false
+  public_subnets_enabled   = true
+  private_subnets_enabled  = false
   aws_route_create_timeout = "5m"
   aws_route_delete_timeout = "10m"
 
@@ -96,7 +98,7 @@ module "ecs_web_app" {
   authentication_oidc_user_info_endpoint        = var.authentication_oidc_user_info_endpoint
 
   # ECS
-  ecs_private_subnet_ids            = module.subnets.private_subnet_ids
+  ecs_private_subnet_ids            = module.subnets.public_subnet_ids
   ecs_cluster_arn                   = aws_ecs_cluster.default.arn
   ecs_cluster_name                  = aws_ecs_cluster.default.name
   ecs_security_group_ids            = var.ecs_security_group_ids

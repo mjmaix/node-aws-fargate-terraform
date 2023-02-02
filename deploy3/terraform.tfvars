@@ -10,7 +10,9 @@ name = "ecs-web-app"
 
 vpc_cidr_block = "172.16.0.0/16"
 
-container_image = "mjmaix/default-backend"
+assign_public_ip = false
+
+# container_image = "mjmaix/tfawsdeploy3"
 
 container_cpu = 256
 
@@ -46,7 +48,7 @@ alb_target_group_alarms_period = 300
 
 alb_target_group_alarms_evaluation_periods = 1
 
-alb_ingress_healthcheck_path = "/"
+alb_ingress_healthcheck_path = "/ping"
 
 alb_ingress_listener_unauthenticated_priority = 1000
 
@@ -121,7 +123,7 @@ codepipeline_github_webhook_events = ["push"]
 
 codepipeline_repo_owner = "mjmaix"
 
-codepipeline_repo_name = "default-backend"
+codepipeline_repo_name = "node-aws-fargate-terraform"
 
 codepipeline_branch = "master"
 
@@ -131,12 +133,20 @@ codepipeline_build_image = "aws/codebuild/docker:17.09.0"
 
 codepipeline_build_timeout = 20
 
+use_ecr_image = true
+
 build_environment_variables = [
   {
-    name  = "TEST"
-    value = "TEST"
+    name  = "TIME_ZONE"
+    value = "GMT"
     type  = "PLAINTEXT"
-  }
+
+  },
+  {
+    name  = "DOCKER_USERNAME"
+    value = "mjmaixdev"
+    type  = "PLAINTEXT"
+  },
 ]
 
 container_environment = []
